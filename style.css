@@ -1,19 +1,5 @@
-element {
-  --dark: #000;
-  --light: #ddd;
-}
-
 html {
+  --dark: #222;
+  --light: #ddd;
   background-color: var(--dark);
-}
-
-table {
-  border-collapse: collapse;
-}
-tr {
-  border: none;
-}
-td {
-  border-right: solid 1px var(--light);
-  border-left: solid 1px var(--light);
 }
