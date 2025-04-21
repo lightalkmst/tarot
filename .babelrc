@@ -1,0 +1,7 @@
+{
+    "presets": ["@babel/env", "@babel/react"],
+    "plugins": [
+      "syntax-jsx",
+      ["transform-react-jsx", {"pragma": "Snabbdom.createElement"}]
+    ]
+}

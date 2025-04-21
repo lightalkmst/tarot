@@ -2,7 +2,14 @@ html {
   --dark: #222;
   --light: #ddd;
   background-color: var(--dark);
-  color: var(--light);
+  color: var(--dark);
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
 }
 
 .reversed {

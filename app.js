@@ -1,6 +1,6 @@
 // TODO: shrink card sizes on mobile
 
-const s3_address = 'https://s3.amazonaws.com/modern-tarot/'
+const s3_address = 'https://tarot-spa.s3.us-east-1.amazonaws.com'
 
 const rider_waite = [[
   ... L.range (0) (21),
