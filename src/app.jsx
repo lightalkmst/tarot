@@ -23,11 +23,9 @@ const thoth = [[
 module.exports = sources => {
   var {DOM: DOM} = sources
 
-  const add_upright = 'add_upright'
   const throw_cards = 'throw_cards'
   const clear_throw = 'clear_throw'
   const clear_spread = 'clear_spread'
-  const clipboard = 'clipboard'
   const reversals = 'reversals'
   const mat = 'mat'
 
@@ -36,18 +34,9 @@ module.exports = sources => {
   const card_height = 208
   const card_width = 120
 
-  var serialize = () => {
-    var ans = ''
-    location.hash = ans
-  }
-
-  var deserialize = () => {}
+  const fullsize = window.screen.width > 600
 
   var get_clicks = s => most.from (DOM.select (`#${s}`).events ('click'))
-
-  // TODO figure out how to derive initial spread if url parameter is given
-
-  var time$ = most.periodic (10)
 
   var thrown$ =
     most.mergeArray ([
@@ -68,7 +57,6 @@ module.exports = sources => {
     get_clicks (reversals)
       .map (h => h.target.checked)
       .startWith (false)
-      .map (F.tap (F.log))
 
   // TODO deck selection (Rider-Waite, Thoth, Wildwood)
   var deck$ = []
@@ -112,11 +100,11 @@ module.exports = sources => {
           img (card[1] ? '.reversed' : '.upright', {
             attrs: {src: image},
             style: {
-              height: card_height + 'px',
-              width: card_width + 'px',
+              height: `${fullsize ? card_height : card_height / 2}px`,
+              width: `${fullsize ? card_width : card_width / 2}px`,
               position: 'absolute',
-              top: h[1] - ctrl_panel_height + 'px',
-              left: h[0] + 'px',
+              top: `${h[1] - ctrl_panel_height + (fullsize ? 0 : card_height / 4)}px`,
+              left:`${h[0] + (fullsize ? 0 : card_width / 4)}px`,
               'z-index': i,
             },
           })
@@ -159,7 +147,6 @@ module.exports = sources => {
       }, [
         cards_dom$,
         thrown$,
-        time$,
       ])
     ),
   }
