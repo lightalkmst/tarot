@@ -29,12 +29,11 @@ module.exports = sources => {
   const reversals = 'reversals'
   const mat = 'mat'
 
-  const ctrl_panel_height = 35
-
   const card_height = 208
   const card_width = 120
 
   const fullsize = window.screen.width > 600
+  const ctrl_panel_height = fullsize ? 25 : 50
 
   var get_clicks = s => most.from (DOM.select (`#${s}`).events ('click'))
 
@@ -125,9 +124,9 @@ module.exports = sources => {
       ) => {
         return (
           <div style={{height: '100%', width: '100%'}}>
-            <button id={throw_cards} style={{width: '100px'}} attrs={thrown ? {disabled: true} : undefined}>Throw</button>
-            <button id={clear_throw} style={{width: '100px'}}>Clear Cards</button>
-            <button id={clear_spread} style={{width: '100px'}}>Clear Spread</button>
+            <button id={throw_cards} style={{height: `${ctrl_panel_height}px`, width: '100px'}} attrs={thrown ? {disabled: true} : undefined}>Throw</button>
+            <button id={clear_throw} style={{height: `${ctrl_panel_height}px`, width: '100px'}}>Clear Cards</button>
+            <button id={clear_spread} style={{height: `${ctrl_panel_height}px`, width: '100px'}}>Clear Spread</button>
             <input id={reversals} attrs={D.extend ({type: 'checkbox'}) (thrown ? {disabled: true} : {})}>Reversals</input>
             {
               thrown
